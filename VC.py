@@ -1,7 +1,11 @@
+import Constance
 import discord
 from discord.ext import commands 
+import json
 import asyncio
 import os
+
+
 
 intents = discord.Intents.default()
 intents.typing = False
@@ -49,9 +53,6 @@ async def leave(ctx):
     else:
         await ctx.send("I'm not in a voice channel!")
         
-bot.run('MTM1MjUxMzYyNzI0NDA3Mjk3MQ.GpdsuV.N9hwtN15CUQNOjfU5uFfcEz6xAvryrqcwvpDUA')
-
-
 #Recording command
 @bot.command()
 async def record(ctx):
@@ -83,5 +84,7 @@ async def stop(ctx):
         
     else:
         await ctx.send("recoding wasnt started monkey")
+        
+bot.run(Constance.API_KEY_SERVICE)
 
     
