@@ -1,25 +1,34 @@
 from openai import OpenAI
 from pathlib import Path
+
+
 client = OpenAI()
 
 class ChatBot:
     def __init__(self):
         self.count = 0
-        self.messages = [
+        self.conversation = [
         {"role": "system", "content": "You are a helpful assistant."}
         ]
     
     
     #Chat Function 
     def Chat(self,input):    
-        response = client.responses.create(
-        model="gpt-4o-mini",
-        input= input
+        self.conversation.append({"role": "user", "content": input})
+        response =  client.chat.completions.create(
+        model="gpt-5",
+        messages= self.conversation
         )
-        #answer = response.choices[0].message.content
-        #self.messages.append({"role": "assistant", "content": answer})
+      
+         # Get assistant reply
+        reply = response.choices[0].message.content
+    
+         # Add assistant reply to conversation
+        self.conversation.append({"role": "assistant", "content": reply})
+    
+    
         
-        return response.output_text
+        return reply
     
     
     #Text To Speach Funtion
@@ -33,3 +42,5 @@ class ChatBot:
             instructions="Make it sound like your singing",
         ) as response:
             response.stream_to_file(speech_file_path)
+            
+    

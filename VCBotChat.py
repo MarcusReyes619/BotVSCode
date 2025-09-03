@@ -22,6 +22,9 @@ async def on_ready():
 async def say(ctx, *, message: str):
     response = chat.Chat(message)
     await ctx.send(response)
+    chat.textToSpeach(response)
+    voice = ctx.voice_client
+    playAduio("speech.mp3",voice)
 
 @bot.command()
 async def join(ctx):
@@ -44,7 +47,7 @@ async def join(ctx):
         await ctx.send("You must be in a voice channel!")
 
 @bot.command()
-async def leave(ctx):
+async def leave(ctx ):
     """Leave the voice channel"""
     if ctx.voice_client:
         await ctx.voice_client.disconnect()
@@ -53,8 +56,10 @@ async def leave(ctx):
 
 #testing bot text to speach
 @bot.command()
-async def hotAndFun(ctx):
-    chat.textToSpeach('All the girls are girling girling')
+async def crazy(ctx, *, message: str):
+    chat.textToSpeach(message)
+    voice = ctx.voice_client
+    playAduio("speech.mp3",voice)
     
     
 def playAduio(audio_file,voice):
