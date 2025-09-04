@@ -10,3 +10,4 @@ commands to use in discord sever
 
 Two main scripts to focuse on are the VCBotChat.py which is the main bot script for discord and the script you run, and ChatTest.py which is where most of the openAI functions are.
 
+Notes: Mind some of the test code... Im really into Kpop. 
